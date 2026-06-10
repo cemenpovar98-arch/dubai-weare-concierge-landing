@@ -1,997 +1,1199 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Консьерж-Сервис & Международный Справочник Дубая</title>
-    <style>
-        :root {
-            --bg-color: #0f0f11;
-            --card-bg: #1a1a1e;
-            --accent-color: #d4af37;
-            --text-color: #ffffff;
-            --text-muted: #a0a0a5;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeAre Dubai — Премиум VIP Консьерж & Суперапп | Дубай</title>
+  <meta name="description" content="WeAre Dubai — эксклюзивный VIP-консьерж суперапп с флотом 100+ авто, яхтами, радио, финансовой экосистемой и закрытым сообществом. Всё лучшее в Дубае — для вас." />
+  <meta name="keywords" content="VIP консьерж Дубай, аренда авто Дубай, яхты Дубай, Dubai concierge, WeAre Dubai, недвижимость Дубай, инвестиции ОАЭ" />
+  <meta property="og:title" content="WeAre Dubai — Премиум VIP Консьерж Суперапп" />
+  <meta property="og:description" content="Флот 100+ авто, яхты, радио, финансы, закрытое сообщество. Всё лучшее Дубая в одной экосистеме." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: { DEFAULT: '#d4af37', light: '#f3e5ab', dark: '#a8882a' },
+            dark: { DEFAULT: '#0d0d0d', 2: '#111111', 3: '#141414', 4: '#1a1a1a', 5: '#222222' },
+          },
+          fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+          backdropBlur: { xs: '2px' },
         }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --bg: #0d0d0d;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+    /* Gold gradient text */
+    .text-gold-grad {
+      background: linear-gradient(90deg, #d4af37, #f3e5ab, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+    /* Glass card */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212,175,55,0.15);
+    }
+    .glass-dark {
+      background: rgba(13,13,13,0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    /* Gold border glow */
+    .gold-glow {
+      box-shadow: 0 0 24px rgba(212,175,55,0.12), 0 1px 0 rgba(212,175,55,0.3) inset;
+    }
+    .gold-glow-hover {
+      transition: box-shadow .3s, border-color .3s, transform .3s;
+    }
+    .gold-glow-hover:hover {
+      box-shadow: 0 0 32px rgba(212,175,55,0.22);
+      border-color: rgba(212,175,55,0.6) !important;
+      transform: translateY(-4px);
+    }
 
-        /* ── Header ── */
-        header {
-            padding: 20px 0;
-            border-bottom: 1px solid #2a2a30;
-            position: sticky;
-            top: 0;
-            background-color: rgba(15,15,17,0.95);
-            backdrop-filter: blur(8px);
-            z-index: 100;
-        }
-        .header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover { color: var(--accent-color); }
-        .btn-ref {
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .btn-ref:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-        /* ── Hero ── */
-        .hero {
-            padding: 100px 0 80px;
-            text-align: center;
-            background:
-                linear-gradient(rgba(15,15,17,0.75), rgba(15,15,17,1)),
-                url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80')
-                no-repeat center / cover;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(212,175,55,0.15);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 5px 18px;
-            border-radius: 20px;
-            font-size: 13px;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-        .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            line-height: 1.15;
-        }
-        .hero h1 span { color: var(--accent-color); }
-        .hero p {
-            font-size: 18px;
-            color: var(--text-muted);
-            margin: 0 auto 35px;
-            max-width: 680px;
-        }
-        .hero-cta {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn-primary {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 15px 35px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 15px 35px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .btn-outline:hover { background: var(--accent-color); color: var(--bg-color); }
+    /* Tabs */
+    .tab-btn.active {
+      background: var(--gold);
+      color: #000;
+    }
 
-        /* ── Stats Bar ── */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: #2a2a30;
-            border: 1px solid #2a2a30;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 50px 0;
-        }
-        .stat-item {
-            background: var(--card-bg);
-            padding: 28px 20px;
-            text-align: center;
-        }
-        .stat-num {
-            font-size: 36px;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-        .stat-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
+    /* Radio equalizer animation */
+    @keyframes bar {
+      0%,100% { transform: scaleY(.4); }
+      50%      { transform: scaleY(1); }
+    }
+    .eq-bar { animation: bar 1s ease-in-out infinite; transform-origin: bottom; }
+    .eq-bar:nth-child(2) { animation-delay: .15s; }
+    .eq-bar:nth-child(3) { animation-delay: .3s; }
+    .eq-bar:nth-child(4) { animation-delay: .45s; }
+    .eq-bar:nth-child(5) { animation-delay: .6s; }
 
-        /* ── Referral Block ── */
-        .referral-box {
-            background: linear-gradient(135deg, #1e1e24, #151518);
-            border: 1px solid var(--accent-color);
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 70px;
-            text-align: center;
-        }
-        .referral-box h2 {
-            color: var(--accent-color);
-            font-size: 26px;
-            margin-bottom: 10px;
-        }
-        .referral-box p { color: var(--text-muted); max-width: 600px; margin: 0 auto 18px; }
-        .badge-percent {
-            display: inline-block;
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 6px 20px;
-            font-weight: bold;
-            border-radius: 20px;
-            margin: 10px 0 18px;
-            font-size: 18px;
-        }
-        .ref-steps {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-        .ref-step {
-            text-align: center;
-            max-width: 160px;
-        }
-        .ref-step-num {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin: 0 auto 10px;
-        }
-        .ref-step p { font-size: 13px; color: var(--text-muted); margin: 0; }
+    /* Section divider */
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 24px;
+    }
 
-        /* ── Section Titles ── */
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-size: 15px;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-color);
-            margin: 12px auto 0;
-        }
-        .section { margin-bottom: 80px; }
+    /* Catalog tab content */
+    .cat-panel { display: none; }
+    .cat-panel.active { display: grid; }
 
-        /* ── Services Grid ── */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #2a2a30;
-            border-radius: 10px;
-            padding: 28px;
-            transition: transform 0.3s, border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-color);
-        }
-        .card-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-        .card h3 {
-            font-size: 19px;
-            margin-bottom: 12px;
-        }
-        .card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            flex-grow: 1;
-            margin-bottom: 20px;
-        }
-        .card-footer {
-            border-top: 1px solid #2a2a30;
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
-        .price-range {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-        .card-tag {
-            background: rgba(212,175,55,0.12);
-            color: var(--accent-color);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-        }
-
-        /* ── Directory (Guide) ── */
-        .directory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
-        }
-        .dir-card {
-            background: var(--card-bg);
-            border: 1px solid #2a2a30;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .dir-card:hover { border-color: var(--accent-color); }
-        .dir-card-header {
-            background: linear-gradient(135deg, #1e1e26, #16161c);
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .dir-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 8px;
-            background: rgba(212,175,55,0.15);
-            border: 1px solid rgba(212,175,55,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-        .dir-card-header h3 { font-size: 16px; }
-        .dir-card-header span { font-size: 12px; color: var(--text-muted); }
-        .dir-card-body { padding: 18px 22px; }
-        .dir-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid #22222a;
-            font-size: 14px;
-        }
-        .dir-item:last-child { border-bottom: none; }
-        .dir-item-name { color: var(--text-color); }
-        .dir-item-detail { color: var(--text-muted); font-size: 12px; }
-        .dir-item-status {
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-        .status-open { background: rgba(40,167,69,0.18); color: #5ecb77; }
-        .status-vip  { background: rgba(212,175,55,0.18); color: var(--accent-color); }
-
-        /* ── VIP Premium Block ── */
-        .premium-block {
-            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(0,0,0,0)), var(--card-bg);
-            border: 2px solid var(--accent-color);
-            border-radius: 14px;
-            padding: 55px 40px;
-            text-align: center;
-            margin-bottom: 70px;
-        }
-        .premium-block .crown { font-size: 48px; margin-bottom: 15px; }
-        .premium-block h2 { font-size: 30px; margin-bottom: 15px; }
-        .premium-block p { color: var(--text-muted); max-width: 580px; margin: 0 auto 30px; }
-        .premium-features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 35px;
-        }
-        .pf-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-        .pf-item span:first-child { color: var(--accent-color); font-size: 18px; }
-        .btn-premium {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 16px 45px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 17px;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-premium:hover { opacity: 0.88; transform: translateY(-2px); }
-
-        /* ── Testimonials ── */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        .testimonial-card {
-            background: var(--card-bg);
-            border: 1px solid #2a2a30;
-            border-radius: 10px;
-            padding: 28px;
-        }
-        .stars { color: var(--accent-color); font-size: 18px; margin-bottom: 14px; }
-        .testimonial-text { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; }
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .author-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(212,175,55,0.2);
-            border: 2px solid var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--accent-color);
-            font-size: 16px;
-        }
-        .author-name { font-size: 14px; font-weight: bold; }
-        .author-flag { font-size: 12px; color: var(--text-muted); }
-
-        /* ── Contact / CTA ── */
-        .cta-section {
-            background: linear-gradient(135deg, #1a1a20, #111114);
-            border: 1px solid #2a2a30;
-            border-radius: 14px;
-            padding: 60px 40px;
-            text-align: center;
-            margin-bottom: 70px;
-        }
-        .cta-section h2 { font-size: 30px; margin-bottom: 15px; }
-        .cta-section p { color: var(--text-muted); margin-bottom: 30px; max-width: 560px; margin-left: auto; margin-right: auto; }
-        .contact-options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-        .tg-btn  { background: #229ED9; color: #fff; }
-        .wa-btn  { background: #25D366; color: #fff; }
-        .tg-btn:hover, .wa-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-
-        /* ── Footer ── */
-        footer {
-            border-top: 1px solid #2a2a30;
-            padding: 40px 0 30px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 35px;
-        }
-        .footer-brand .logo { font-size: 18px; margin-bottom: 12px; display: block; }
-        .footer-brand p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-        .footer-col h4 { font-size: 14px; font-weight: bold; margin-bottom: 14px; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
-        .footer-col ul li a:hover { color: var(--accent-color); }
-        .footer-bottom {
-            border-top: 1px solid #2a2a30;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 900px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .nav-links { display: none; }
-        }
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 32px; }
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr; }
-            .premium-block { padding: 35px 20px; }
-            .cta-section { padding: 40px 20px; }
-        }
-    </style>
+    /* Floating radial blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
 </head>
-<body>
+<body class="font-sans text-white overflow-x-hidden">
 
-<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
-<header>
-    <div class="container">
-        <div class="header-flex">
-            <div class="logo">★ Dubai VIP Guide</div>
-            <ul class="nav-links">
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#directory">Справочник</a></li>
-                <li><a href="#vip">VIP-Чат</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#contact">Контакт</a></li>
-            </ul>
-            <a href="#referral" class="btn-ref">Реферальная программа</a>
-        </div>
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header id="top" class="fixed top-0 left-0 w-full z-50 glass-dark border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-5 flex items-center justify-between h-20">
+
+    <a href="#top" class="text-xl font-black tracking-widest uppercase">
+      We<span class="text-gold-grad">Are</span>
+      <span class="text-xs font-light text-white/40 tracking-widest ml-1">DUBAI</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-[11px] font-semibold uppercase tracking-widest text-white/60">
+      <a href="#catalog"   class="hover:text-gold transition-colors">Услуги</a>
+      <a href="#radio"     class="hover:text-gold transition-colors">Радио</a>
+      <a href="#community" class="hover:text-gold transition-colors">Комьюнити</a>
+      <a href="#finance"   class="hover:text-gold transition-colors">Финансы</a>
+      <a href="#faces"     class="hover:text-gold transition-colors">Партнёры</a>
+      <a href="#scale"     class="hover:text-gold transition-colors">Масштаб</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="weare.html"
+         class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded border border-gold/60 text-gold text-[11px] font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition-all duration-300">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9V9h2v4zm0-6H9V5h2v2z"/></svg>
+        Инвестировать
+      </a>
+      <a href="#catalog"
+         class="px-5 py-2.5 rounded bg-gold text-black text-[11px] font-bold uppercase tracking-widest hover:bg-gold-light transition-all duration-300">
+        Заказать
+      </a>
     </div>
+  </div>
 </header>
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-badge">✦ Премиум консьерж-сервис · Дубай</div>
-        <h1>Ваш личный <span>VIP-гид</span><br>по Дубаю</h1>
-        <p>Всё необходимое для жизни, бизнеса и отдыха в ОАЭ — в одном месте. Персональный консьерж, эксклюзивные контакты и закрытый справочник лучших сервисов города.</p>
-        <div class="hero-cta">
-            <a href="#vip" class="btn-primary">Получить VIP-доступ</a>
-            <a href="#services" class="btn-outline">Смотреть услуги</a>
-        </div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-20">
+  <!-- blobs -->
+  <div class="blob w-[600px] h-[600px] bg-gold/5 top-[-100px] left-[-200px]"></div>
+  <div class="blob w-[400px] h-[400px] bg-gold/8 bottom-0 right-[-100px]"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-5 py-28">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 text-gold text-[11px] font-semibold uppercase tracking-[3px] mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+      Дубай · Экосистема нового уровня
     </div>
+
+    <h1 class="text-5xl md:text-7xl font-black uppercase leading-[1.1] tracking-tight mb-6">
+      Твой личный<br/>
+      <span class="text-gold-grad">VIP-Консьерж</span><br/>
+      суперапп
+    </h1>
+
+    <p class="text-white/55 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+      Флот 100+ авто, яхты, радио, финансы, закрытое сообщество, медиастудия — всё лучшее Дубая в одной экосистеме. 24/7.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#catalog" class="px-8 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest rounded hover:bg-gold-light transition-all">
+        Смотреть услуги
+      </a>
+      <a href="#community" class="px-8 py-4 border border-white/20 text-white font-bold text-sm uppercase tracking-widest rounded hover:border-gold/60 hover:text-gold transition-all">
+        VIP-Чат
+      </a>
+      <a href="weare.html" class="px-8 py-4 border border-gold/40 text-gold font-bold text-sm uppercase tracking-widest rounded hover:bg-gold/10 transition-all">
+        Инвестировать →
+      </a>
+    </div>
+
+    <!-- micro stats -->
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+      <div class="glass rounded-xl p-4">
+        <div class="text-2xl font-black text-gold-grad">100+</div>
+        <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">Авто в флоте</div>
+      </div>
+      <div class="glass rounded-xl p-4">
+        <div class="text-2xl font-black text-gold-grad">24/7</div>
+        <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">Консьерж</div>
+      </div>
+      <div class="glass rounded-xl p-4">
+        <div class="text-2xl font-black text-gold-grad">16</div>
+        <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">Категорий услуг</div>
+      </div>
+      <div class="glass rounded-xl p-4">
+        <div class="text-2xl font-black text-gold-grad">AED</div>
+        <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">Собственные карты</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══════════════════════════ STATS ═══════════════════════════ -->
-<div class="container">
-    <div class="stats-bar">
-        <div class="stat-item">
-            <div class="stat-num">500+</div>
-            <div class="stat-label">Проверенных контактов</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">12</div>
-            <div class="stat-label">Категорий услуг</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">24/7</div>
-            <div class="stat-label">Поддержка консьержа</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-num">3 000+</div>
-            <div class="stat-label">Членов VIP-сообщества</div>
-        </div>
+
+<!-- ══════════════════════════════════════════
+     RADIO DUBAI
+══════════════════════════════════════════ -->
+<section id="radio" class="relative py-28 border-t border-white/5 overflow-hidden">
+  <div class="blob w-[500px] h-[500px] bg-gold/4 top-0 right-[-150px]"></div>
+  <div class="max-w-7xl mx-auto px-5 relative z-10">
+
+    <div class="text-center mb-16">
+      <div class="inline-block px-3 py-1 rounded border border-gold/25 text-gold/70 text-[10px] uppercase tracking-[3px] mb-4">Эксклюзивно</div>
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Radio <span class="text-gold-grad">Dubai</span>
+      </h2>
+      <p class="text-white/45 mt-4 max-w-xl mx-auto font-light">Ежедневный эксклюзивный лайнап. Премиальная подписка. Покупай любимые сеты.</p>
     </div>
-</div>
 
-<!-- ═══════════════════════════ REFERRAL ═══════════════════════════ -->
-<div class="container" id="referral">
-    <div class="referral-box">
-        <h2>Реферальная программа</h2>
-        <p>Приглашайте друзей и получайте пожизненную комиссию с каждой оплаты, которую они совершат через наш сервис.</p>
-        <div class="badge-percent">20% с каждой оплаты реферала</div>
-        <div class="ref-steps">
-            <div class="ref-step">
-                <div class="ref-step-num">1</div>
-                <p>Получите персональную реферальную ссылку в личном кабинете</p>
-            </div>
-            <div class="ref-step">
-                <div class="ref-step-num">2</div>
-                <p>Поделитесь ссылкой с друзьями и знакомыми</p>
-            </div>
-            <div class="ref-step">
-                <div class="ref-step-num">3</div>
-                <p>Получайте 20% комиссии пожизненно с каждого платежа</p>
-            </div>
+    <!-- Player card -->
+    <div class="max-w-3xl mx-auto glass rounded-2xl p-8 gold-glow mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <div class="text-[11px] text-gold uppercase tracking-widest mb-1">Сейчас в эфире</div>
+          <div class="text-xl font-bold">Melodic House · Night Session</div>
+          <div class="text-white/40 text-sm mt-1">DJ Krave & Nora Al Far · Dubai Marina Live</div>
         </div>
-        <br>
-        <a href="#contact" class="btn-primary" style="margin-top:10px;">Узнать подробнее</a>
+        <!-- Equalizer animation -->
+        <div class="flex items-end gap-[3px] h-10">
+          <div class="eq-bar w-[4px] bg-gold rounded-sm h-full"></div>
+          <div class="eq-bar w-[4px] bg-gold/80 rounded-sm h-full"></div>
+          <div class="eq-bar w-[4px] bg-gold rounded-sm h-full"></div>
+          <div class="eq-bar w-[4px] bg-gold/70 rounded-sm h-full"></div>
+          <div class="eq-bar w-[4px] bg-gold rounded-sm h-full"></div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-full h-[2px] bg-white/10 rounded-full mb-3">
+        <div class="h-full w-2/5 bg-gradient-to-r from-gold to-gold-light rounded-full"></div>
+      </div>
+      <div class="flex justify-between text-[11px] text-white/30 mb-6">
+        <span>38:12</span><span>1:32:00</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-gold/40 transition-colors text-white/50 hover:text-gold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6V6zm3.5 6L18 6v12L9.5 12z"/></svg>
+        </button>
+        <button class="w-16 h-16 rounded-full bg-gold flex items-center justify-center hover:bg-gold-light transition-colors shadow-lg shadow-gold/20">
+          <svg class="w-6 h-6 text-black ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-gold/40 transition-colors text-white/50 hover:text-gold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2.5-6l6-4.33v8.67L8.5 12zM16 6h2v12h-2V6z"/></svg>
+        </button>
+      </div>
     </div>
-</div>
 
-<!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
-<div class="container section" id="services">
-    <h2 class="section-title">Услуги консьержа</h2>
-    <p class="section-subtitle">Полный спектр сервисов для комфортной жизни и работы в ОАЭ</p>
-    <div class="services-grid">
-
-        <div class="card">
-            <div class="card-icon">🏠</div>
-            <h3>Недвижимость и жильё</h3>
-            <p>Подбор апартаментов и вилл в аренду или покупку. Проверенные агентства, сопровождение сделок, переезд под ключ.</p>
-            <div class="card-footer">
-                <span class="price-range">от 500 AED</span>
-                <span class="card-tag">Популярное</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🚗</div>
-            <h3>Аренда и покупка авто</h3>
-            <p>Люксовые автомобили напрокат, помощь с покупкой, страховка и переоформление. Lamborghini, Rolls-Royce, Ferrari.</p>
-            <div class="card-footer">
-                <span class="price-range">от 350 AED/сут.</span>
-                <span class="card-tag">VIP</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">📋</div>
-            <h3>Визы и документы</h3>
-            <p>Оформление резидентских виз, Emirates ID, Golden Visa, открытие счетов. Полное юридическое сопровождение.</p>
-            <div class="card-footer">
-                <span class="price-range">от 1 500 AED</span>
-                <span class="card-tag">Срочно</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">💼</div>
-            <h3>Открытие бизнеса</h3>
-            <p>Регистрация компании в ОАЭ, Freezone и Mainland. Банковские счета, бухгалтерия, PRO-услуги.</p>
-            <div class="card-footer">
-                <span class="price-range">от 8 000 AED</span>
-                <span class="card-tag">Бизнес</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">✈️</div>
-            <h3>Перелёты и трансфер</h3>
-            <p>Бизнес и первый класс, частные джеты, яхты. VIP-встречи в аэропорту, трансферы по всему Дубаю.</p>
-            <div class="card-footer">
-                <span class="price-range">от 200 AED</span>
-                <span class="card-tag">VIP</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🏥</div>
-            <h3>Медицина и здоровье</h3>
-            <p>Лучшие клиники Дубая, запись к специалистам, экстренная помощь. Страхование здоровья для резидентов.</p>
-            <div class="card-footer">
-                <span class="price-range">от 300 AED</span>
-                <span class="card-tag">Важное</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🎓</div>
-            <h3>Образование</h3>
-            <p>Подбор школ, университетов, языковых курсов. Запись детей в международные школы, помощь с документами.</p>
-            <div class="card-footer">
-                <span class="price-range">Консультация</span>
-                <span class="card-tag">Семья</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🍽️</div>
-            <h3>Рестораны и досуг</h3>
-            <p>Бронирование столиков в лучших ресторанах, VIP-секции в клубах, яхт-вечеринки, закрытые мероприятия.</p>
-            <div class="card-footer">
-                <span class="price-range">от 100 AED</span>
-                <span class="card-tag">Lifestyle</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">💰</div>
-            <h3>Финансы и крипто</h3>
-            <p>Открытие счетов в UAE-банках, обмен валюты, OTC-сделки с криптовалютой, финансовое планирование.</p>
-            <div class="card-footer">
-                <span class="price-range">Индивидуально</span>
-                <span class="card-tag">Финансы</span>
-            </div>
-        </div>
-
+    <!-- Styles grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 mb-12">
+      {%styles%}
     </div>
-</div>
 
-<!-- ═══════════════════════════ DIRECTORY ═══════════════════════════ -->
-<div class="container section" id="directory">
-    <h2 class="section-title">Международный справочник</h2>
-    <p class="section-subtitle">Проверенные контакты по всем сферам жизни в ОАЭ</p>
-    <div class="directory-grid">
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">🏦</div>
-                <div>
-                    <h3>Банки &amp; Финансы</h3>
-                    <span>7 проверенных учреждений</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">Emirates NBD</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Mashreq Bank</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">ADCB (Abu Dhabi)</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Crypto OTC Desk</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">⚖️</div>
-                <div>
-                    <h3>Юристы &amp; Нотариусы</h3>
-                    <span>12 специалистов</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">Al Tamimi &amp; Company</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Hadef &amp; Partners</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">DIFC Courts Legal</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Русскоязычный юрист</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">🏥</div>
-                <div>
-                    <h3>Медицина</h3>
-                    <span>15 клиник и специалистов</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">American Hospital Dubai</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Medcare Hospital</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Aster Clinic (RU)</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">VIP-стоматология</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">🏫</div>
-                <div>
-                    <h3>Школы &amp; Обучение</h3>
-                    <span>9 учебных заведений</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">GEMS Education</span>
-                    <span class="dir-item-status status-open">Места есть</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Dubai International School</span>
-                    <span class="dir-item-status status-open">Места есть</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Русская школа Дубай</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Курсы арабского</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">🚗</div>
-                <div>
-                    <h3>Авто &amp; Транспорт</h3>
-                    <span>10 проверенных сервисов</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">Rotana Star Rental</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">McLaren Dubai</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">СТО русские мастера</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Частный шофёр 24/7</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="dir-card">
-            <div class="dir-card-header">
-                <div class="dir-icon">🛍️</div>
-                <div>
-                    <h3>Шоппинг &amp; Люкс</h3>
-                    <span>8 бутиков и шоурумов</span>
-                </div>
-            </div>
-            <div class="dir-card-body">
-                <div class="dir-item">
-                    <span class="dir-item-name">Dubai Mall VIP Shopping</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Personal Shopper</span>
-                    <span class="dir-item-status status-vip">VIP</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Gold Souk Guide</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-                <div class="dir-item">
-                    <span class="dir-item-name">Watches &amp; Jewellery</span>
-                    <span class="dir-item-status status-open">Открыт</span>
-                </div>
-            </div>
-        </div>
-
+    <!-- Subscription tiers -->
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="glass rounded-xl p-6 gold-glow-hover border border-white/5">
+        <div class="text-xs text-white/40 uppercase tracking-widest mb-3">Basic</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">99 <span class="text-base font-normal text-white/50">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-2 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Все стили 24/7</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Архив 30 дней</li>
+          <li class="flex gap-2 opacity-40"><span>✗</span> Покупка сетов</li>
+        </ul>
+      </div>
+      <div class="relative rounded-xl p-6 border border-gold/50 bg-gradient-to-b from-gold/8 to-transparent gold-glow gold-glow-hover">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full">Популярное</div>
+        <div class="text-xs text-gold/70 uppercase tracking-widest mb-3">Premium</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">249 <span class="text-base font-normal text-white/50">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-2 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Всё из Basic</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Покупка сетов</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Приоритетные ивенты</li>
+        </ul>
+      </div>
+      <div class="glass rounded-xl p-6 gold-glow-hover border border-white/5">
+        <div class="text-xs text-white/40 uppercase tracking-widest mb-3">Platinum</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">599 <span class="text-base font-normal text-white/50">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-2 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Всё из Premium</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> VIP-встречи с DJ</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Закрытые ивенты</li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- ═══════════════════════════ VIP PREMIUM ═══════════════════════════ -->
-<div class="container" id="vip">
-    <div class="premium-block">
-        <div class="crown">👑</div>
-        <h2>VIP-чат &amp; Закрытое сообщество</h2>
-        <p>Доступ к закрытому Telegram-чату с проверенными экспатами, бизнесменами и специалистами Дубая. Реальные рекомендации, эксклюзивные предложения и личная помощь консьержа.</p>
-        <div class="premium-features">
-            <div class="pf-item"><span>✦</span><span>Закрытый Telegram-чат</span></div>
-            <div class="pf-item"><span>✦</span><span>Личный консьерж 24/7</span></div>
-            <div class="pf-item"><span>✦</span><span>Эксклюзивные сделки</span></div>
-            <div class="pf-item"><span>✦</span><span>Полный справочник контактов</span></div>
-            <div class="pf-item"><span>✦</span><span>Нетворкинг с экспатами</span></div>
-            <div class="pf-item"><span>✦</span><span>Скидки от партнёров</span></div>
-        </div>
-        <a href="#contact" class="btn-premium">Получить VIP-доступ — 299 AED/мес.</a>
+
+<!-- ══════════════════════════════════════════
+     REFERRAL
+══════════════════════════════════════════ -->
+<section id="referral" class="relative py-28 border-t border-white/5 overflow-hidden">
+  <div class="blob w-[400px] h-[400px] bg-gold/5 bottom-0 left-[-100px]"></div>
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+
+    <div class="text-center mb-16">
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Зарабатывай <span class="text-gold-grad">С Нами</span>
+      </h2>
+      <p class="text-white/45 mt-4 max-w-xl mx-auto font-light">От человека для человека. Рекомендуй и получай реальный доход.</p>
     </div>
-</div>
 
-<!-- ═══════════════════════════ REVIEWS ═══════════════════════════ -->
-<div class="container section" id="reviews">
-    <h2 class="section-title">Отзывы участников</h2>
-    <p class="section-subtitle">Реальные истории людей, которым мы помогли обустроить жизнь в Дубае</p>
-    <div class="testimonials-grid">
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <!-- Left: mechanics -->
+      <div class="glass rounded-2xl p-8 border border-gold/15 gold-glow">
+        <div class="text-5xl font-black text-gold-grad mb-2">20%</div>
+        <div class="text-sm text-white/50 mb-6 font-light">пожизненная комиссия с каждого платежа вашего реферала</div>
 
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">«За 2 недели оформили Golden Visa, открыли счёт в банке и нашли отличную квартиру на JBR. Без этого сервиса ушли бы месяцы. Рекомендую всем переезжающим!»</p>
-            <div class="testimonial-author">
-                <div class="author-avatar">А</div>
-                <div>
-                    <div class="author-name">Алексей М.</div>
-                    <div class="author-flag">🇷🇺 Москва → Дубай</div>
-                </div>
+        <div class="space-y-4">
+          <div class="flex gap-4 items-start">
+            <div class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold font-bold text-sm flex-shrink-0">1</div>
+            <div>
+              <div class="font-semibold text-sm">Получите личную ссылку</div>
+              <div class="text-white/40 text-sm font-light mt-0.5">В профиле VIP-кабинета — одна кнопка</div>
             </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold font-bold text-sm flex-shrink-0">2</div>
+            <div>
+              <div class="font-semibold text-sm">Поделитесь с другом</div>
+              <div class="text-white/40 text-sm font-light mt-0.5">Он получит скидку 10% на первый заказ</div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold font-bold text-sm flex-shrink-0">3</div>
+            <div>
+              <div class="font-semibold text-sm">Получайте доход всегда</div>
+              <div class="text-white/40 text-sm font-light mt-0.5">20% со всех его платежей — бессрочно</div>
+            </div>
+          </div>
         </div>
 
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">«VIP-чат — это золото. Нашла русскоязычного педиатра, порекомендовали школу для детей и даже помогли с интернет-провайдером. Вся жизнь упростилась.»</p>
-            <div class="testimonial-author">
-                <div class="author-avatar">М</div>
-                <div>
-                    <div class="author-name">Мария К.</div>
-                    <div class="author-flag">🇰🇿 Алматы → Дубай</div>
-                </div>
-            </div>
-        </div>
+        <a href="#contact" class="mt-8 block text-center py-3.5 bg-gold text-black text-sm font-bold uppercase tracking-widest rounded hover:bg-gold-light transition-all">
+          Стать партнёром
+        </a>
+      </div>
 
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="testimonial-text">«Открыли бизнес во Freezone за 10 дней, включая счёт и визы. Консьерж сопровождал на каждом шагу. Цена полностью оправдана — сэкономили нервы и время.»</p>
-            <div class="testimonial-author">
-                <div class="author-avatar">Д</div>
-                <div>
-                    <div class="author-name">Дмитрий Р.</div>
-                    <div class="author-flag">🇺🇦 Киев → Дубай</div>
-                </div>
-            </div>
+      <!-- Right: tiers -->
+      <div class="space-y-4">
+        <div class="glass rounded-xl px-6 py-5 border border-white/5 gold-glow-hover flex justify-between items-center">
+          <div>
+            <div class="font-bold text-sm">Реферал</div>
+            <div class="text-white/40 text-xs mt-0.5 font-light">1–5 привлечённых клиентов</div>
+          </div>
+          <div class="text-gold font-black text-xl">20%</div>
         </div>
-
+        <div class="glass rounded-xl px-6 py-5 border border-gold/25 gold-glow-hover flex justify-between items-center">
+          <div>
+            <div class="font-bold text-sm">Амбассадор</div>
+            <div class="text-white/40 text-xs mt-0.5 font-light">6–20 клиентов · приоритет в листе</div>
+          </div>
+          <div class="text-gold font-black text-xl">25%</div>
+        </div>
+        <div class="rounded-xl px-6 py-5 border border-gold/50 bg-gradient-to-r from-gold/8 to-transparent gold-glow-hover flex justify-between items-center">
+          <div>
+            <div class="font-bold text-sm">Элита</div>
+            <div class="text-white/40 text-xs mt-0.5 font-light">21+ клиентов · персональный менеджер</div>
+          </div>
+          <div class="text-gold font-black text-xl">30%</div>
+        </div>
+        <div class="glass rounded-xl p-5 border border-white/5 mt-2">
+          <div class="text-xs text-gold/70 uppercase tracking-widest mb-2">Скидка для ваших друзей</div>
+          <div class="text-2xl font-black text-gold-grad">−10%</div>
+          <div class="text-white/40 text-sm font-light mt-1">На первый заказ по реферальной ссылке</div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- ═══════════════════════════ CONTACT / CTA ═══════════════════════════ -->
-<div class="container" id="contact">
-    <div class="cta-section">
-        <h2>Готовы начать?</h2>
-        <p>Напишите нам прямо сейчас — консьерж ответит в течение 15 минут и поможет с любым вопросом по жизни в ОАЭ.</p>
-        <div class="contact-options">
-            <a href="https://t.me/dubaivipconcierge" class="contact-btn tg-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-                Telegram
-            </a>
-            <a href="https://wa.me/971500000000" class="contact-btn wa-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.524 5.84L0 24l6.302-1.653A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.159 16.693c-.261.733-1.516 1.401-2.073 1.449-.557.049-1.08.247-3.633-.756-3.072-1.22-5.042-4.356-5.193-4.556-.152-.2-1.237-1.644-1.237-3.136s.781-2.226 1.058-2.528c.277-.302.604-.378.804-.378.2 0 .402.002.578.01.185.008.433-.07.678.518.261.619.886 2.138.963 2.293.077.155.129.338.026.544-.103.206-.155.334-.309.514-.154.18-.324.402-.462.54-.155.153-.316.319-.136.626.18.307.8 1.32 1.717 2.14 1.178 1.048 2.17 1.372 2.476 1.527.307.155.485.129.663-.077.18-.206.765-.894 1-.2.206-.307.235-.359.471-.26.462.052 1.313.617 1.507.771.193.155.32.18.371.283.05.1.05.59-.211 1.157z"/></svg>
-                WhatsApp
-            </a>
-            <a href="mailto:info@dubaivipguide.com" class="contact-btn btn-ref">
-                ✉ Email
-            </a>
-        </div>
-    </div>
-</div>
 
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <span class="logo">★ Dubai VIP Guide</span>
-                <p>Премиум консьерж-сервис и международный справочник для русскоязычных экспатов в ОАЭ. Помогаем обустроить жизнь, бизнес и отдых в Дубае.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Услуги</h4>
-                <ul>
-                    <li><a href="#services">Недвижимость</a></li>
-                    <li><a href="#services">Визы и документы</a></li>
-                    <li><a href="#services">Открытие бизнеса</a></li>
-                    <li><a href="#services">Аренда авто</a></li>
-                    <li><a href="#services">Медицина</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Информация</h4>
-                <ul>
-                    <li><a href="#directory">Справочник</a></li>
-                    <li><a href="#vip">VIP-сообщество</a></li>
-                    <li><a href="#referral">Реферальная программа</a></li>
-                    <li><a href="#reviews">Отзывы</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Контакты</h4>
-                <ul>
-                    <li><a href="https://t.me/dubaivipconcierge">Telegram</a></li>
-                    <li><a href="https://wa.me/971500000000">WhatsApp</a></li>
-                    <li><a href="mailto:info@dubaivipguide.com">Email</a></li>
-                    <li><a href="#contact">Написать нам</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>© 2024 Dubai VIP Guide. Все права защищены.</span>
-            <span>Dubai, United Arab Emirates 🇦🇪</span>
-        </div>
+<!-- ══════════════════════════════════════════
+     MEGA CATALOG
+══════════════════════════════════════════ -->
+<section id="catalog" class="relative py-28 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-5">
+
+    <div class="text-center mb-14">
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Каталог <span class="text-gold-grad">Услуг</span>
+      </h2>
+      <p class="text-white/45 mt-4 max-w-xl mx-auto font-light">16 категорий. Любой запрос — любой бюджет. Всё под ключ.</p>
     </div>
+
+    <!-- Tab buttons -->
+    <div class="flex flex-wrap gap-2 justify-center mb-10" id="cat-tabs">
+      <button onclick="switchTab('cars')"      class="tab-btn active px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="cars">🚗 Авто & Флот</button>
+      <button onclick="switchTab('yachts')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="yachts">⛵ Яхты</button>
+      <button onclick="switchTab('hotels')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="hotels">🏨 Отели & Рестораны</button>
+      <button onclick="switchTab('events')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="events">🎉 Ивенты & Тусовки</button>
+      <button onclick="switchTab('money')"     class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="money">💳 Финансы & Карты</button>
+      <button onclick="switchTab('sport')"     class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="sport">🏋️ Спорт</button>
+      <button onclick="switchTab('tours')"     class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="tours">🗺️ Туры & Гиды</button>
+      <button onclick="switchTab('realty')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="realty">🏠 Недвижимость</button>
+      <button onclick="switchTab('security')"  class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="security">🛡️ Безопасность & Юристы</button>
+      <button onclick="switchTab('business')"  class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="business">💼 Бизнес-консалтинг</button>
+      <button onclick="switchTab('invest')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="invest">📈 Инвестиции</button>
+      <button onclick="switchTab('agency')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="agency">🎬 Агентство & Контент</button>
+      <button onclick="switchTab('beauty')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="beauty">💆 Бьюти & СПА</button>
+      <button onclick="switchTab('repair')"    class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="repair">🔧 Ремонт</button>
+      <button onclick="switchTab('staff')"     class="tab-btn px-4 py-2 rounded text-[11px] font-bold uppercase tracking-wider border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold transition-all" data-tab="staff">👤 Персонал</button>
+    </div>
+
+    <!-- Catalog panels -->
+    <div id="cat-content">
+
+      <!-- CARS -->
+      <div id="tab-cars" class="cat-panel active grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏎️</div>
+          <h3 class="font-bold mb-1">Суперкары & Спорт</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Lamborghini, Ferrari, McLaren, Porsche. С водителем или самостоятельно.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 1 500 до 8 000 AED/сут.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Флот</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🚘</div>
+          <h3 class="font-bold mb-1">Luxury Sedan & SUV</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Rolls-Royce, Bentley, Maybach, G-Wagon. Для особых случаев и ежедневного комфорта.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 800 до 4 000 AED/сут.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Флот</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🛻</div>
+          <h3 class="font-bold mb-1">Премиум SUV & Пикапы</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Range Rover, Escalade, RAM TRX. Для сафари, семьи и больших поездок.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 до 2 000 AED/сут.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Флот</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">💰</div>
+          <h3 class="font-bold mb-1">Рассрочка & Выкуп</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Гибкая рассрочка на любое авто флота. Выкуп по остаточной стоимости через 12–36 месяцев.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 2 000 AED/мес.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Финансы</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🚁</div>
+          <h3 class="font-bold mb-1">Вертолёты & Частные джеты</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Трансферы, экскурсии на вертолёте, чартерные рейсы по всему региону.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 500 AED/час</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">VIP</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🚐</div>
+          <h3 class="font-bold mb-1">Трансферы & Шофёры</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Личный шофёр 24/7, встреча в аэропорту, корпоративные трансферы.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 150 AED/час</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">24/7</span></div>
+        </div>
+      </div>
+
+      <!-- YACHTS -->
+      <div id="tab-yachts" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">⛵</div>
+          <h3 class="font-bold mb-1">Катера до 40 футов</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Speedboat, Jetski, рыбалка. Идеально для небольших компаний и дневных прогулок.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 600 до 2 000 AED/час</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Флот</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🛥️</div>
+          <h3 class="font-bold mb-1">Яхты 40–80 футов</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Люксовые яхты с кейтерингом, музыкой и командой. До 20 гостей.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 2 500 до 7 000 AED/час</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">VIP</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🚢</div>
+          <h3 class="font-bold mb-1">Мегаяхты 80+ футов</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Эксклюзивные чартеры для корпоративных мероприятий, вечеринок и длинных рейсов.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 15 000 AED/день</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Elite</span></div>
+        </div>
+      </div>
+
+      <!-- HOTELS -->
+      <div id="tab-hotels" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏨</div>
+          <h3 class="font-bold mb-1">Отели 5★ & 7★</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Бронирование и апгрейд номеров в Burj Al Arab, Atlantis, Armani Hotel, Four Seasons.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 1 500 AED/ночь</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Лучшие цены</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🍽️</div>
+          <h3 class="font-bold mb-1">Рестораны & Fine Dining</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Бронирование VIP-столиков, приватные залы. Мишленовские рестораны и роoftop-концепции.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 300 AED/чел.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Приоритет</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🥂</div>
+          <h3 class="font-bold mb-1">Beach Clubs & Lounges</h3>
+          <p class="text-white/45 text-sm font-light mb-4">VIP-бронирование лежаков, кабинок, бутылочного обслуживания в лучших локациях Дубая.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 AED/день</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">VIP</span></div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div id="tab-events" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🎊</div>
+          <h3 class="font-bold mb-1">Ивенты под ключ</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Дни рождения, свадьбы, корпоративы — любой формат и масштаб. Полное продакшн-сопровождение.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 10 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Под ключ</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🎧</div>
+          <h3 class="font-bold mb-1">Вечеринки от WeAre</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Закрытые тусовки промокоманды WeAre — топовые диджеи, лучшие локации, эксклюзивный гостевой список.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 AED/вход</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Закрытые</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏟️</div>
+          <h3 class="font-bold mb-1">Аренда площадок</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Подбор и аренда любых площадок: крышные рестораны, яхты, пустынные кэмпы, медиастудии.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Любой формат</span></div>
+        </div>
+      </div>
+
+      <!-- MONEY -->
+      <div id="tab-money" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">💱</div>
+          <h3 class="font-bold mb-1">Обмен валюты & Крипто OTC</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Выгодный курс, крупные суммы, полная конфиденциальность. OTC-деск для крипто-сделок.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">Лучший курс рынка</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Конфиденциально</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-gold/20 gold-glow gold-glow-hover">
+          <div class="text-3xl mb-3">💳</div>
+          <h3 class="font-bold mb-1">Дизайнерские WeAre-карты</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Собственные банковские карты в дизайне WeAre. Онлайн-установка, Apple Pay / Google Pay, мультивалюта.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">Выпуск от 299 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Эксклюзив</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📱</div>
+          <h3 class="font-bold mb-1">Онлайн-установка карт</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Удалённая привязка карт к телефону без личного визита. Поддержка 40+ банков ОАЭ.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 150 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Онлайн</span></div>
+        </div>
+      </div>
+
+      <!-- SPORT -->
+      <div id="tab-sport" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏋️</div>
+          <h3 class="font-bold mb-1">Персональные тренеры</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Тренеры по фитнесу, боксу, йоге, функциональному тренингу. Онлайн и офлайн сессии.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 300 AED/сессия</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Топ тренеры</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🎾</div>
+          <h3 class="font-bold mb-1">Активности & Приключения</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Дайвинг, кайтсёрфинг, падел, гольф, сафари, скалолазание. Организация и бронирование.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 200 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Активный отдых</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏟️</div>
+          <h3 class="font-bold mb-1">VIP-спортзалы</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Доступ в лучшие фитнес-клубы Дубая: Cafit, Fitness First Platinum, GoldGym Premium.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 AED/мес.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Premim</span></div>
+        </div>
+      </div>
+
+      <!-- TOURS -->
+      <div id="tab-tours" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🗺️</div>
+          <h3 class="font-bold mb-1">Личные гиды по Дубаю</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Русскоязычные гиды. Old Dubai, Gold Souk, Burj Khalifa, Desert — любой маршрут.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 AED/день</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Частные</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏜️</div>
+          <h3 class="font-bold mb-1">Сафари & Пустыня</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Дюны на внедорожниках, ужин в пустыне, квадроциклы, верблюды. VIP-маршруты.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 350 AED/чел.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Приключения</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">✈️</div>
+          <h3 class="font-bold mb-1">Туры по ОАЭ & за рубеж</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Абу-Даби, Рас-эль-Хайма, Маскат, Мальдивы — туры под ключ с логистикой.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 2 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Под ключ</span></div>
+        </div>
+      </div>
+
+      <!-- REALTY -->
+      <div id="tab-realty" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏠</div>
+          <h3 class="font-bold mb-1">Аренда жилья</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Апартаменты, виллы, пентхаусы. Краткосрочная и долгосрочная аренда. Срочный заезд.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 5 000 AED/мес.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Проверено</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏗️</div>
+          <h3 class="font-bold mb-1">Покупка недвижимости</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Off-plan, вторичка, инвестиционные объекты. Сопровождение сделки от А до Я.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Инвестиции</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📋</div>
+          <h3 class="font-bold mb-1">Управление объектами</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Property management, сдача в аренду, контроль арендаторов, финансовая отчётность.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 5% с аренды</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Управление</span></div>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div id="tab-security" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🛡️</div>
+          <h3 class="font-bold mb-1">Личная охрана & Сопровождение</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Профессиональные охранники, сопровождение на мероприятия и поездки. Дискретно.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 800 AED/день</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Конфиденциально</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">⚖️</div>
+          <h3 class="font-bold mb-1">Юридическое сопровождение</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Собственные юр. фирмы: визы, контракты, бизнес, недвижимость, споры. На русском языке.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 500 AED/час</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Свои юристы</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🔐</div>
+          <h3 class="font-bold mb-1">Кибербезопасность & Privacy</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Защита цифровой жизни, VPN-решения, аудит безопасности, удаление данных из сети.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">Индивидуально</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">VIP</span></div>
+        </div>
+      </div>
+
+      <!-- BUSINESS -->
+      <div id="tab-business" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏢</div>
+          <h3 class="font-bold mb-1">Регистрация бизнеса</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Freezone, Mainland, офшор. Лицензии, банковские счета, PRO-услуги. Под ключ.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 8 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Под ключ</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🎤</div>
+          <h3 class="font-bold mb-1">Топ-спикеры & Менторы</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Приглашение спикеров мирового уровня на ваши ивенты и сессии. Разовые и пакетные форматы.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 5 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Нетворк</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📊</div>
+          <h3 class="font-bold mb-1">Стратегический консалтинг</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Аудит бизнеса, выход на рынок ОАЭ, масштабирование, M&A-сопровождение.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 000 AED/сессия</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Проект</span></div>
+        </div>
+      </div>
+
+      <!-- INVEST -->
+      <div id="tab-invest" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏗️</div>
+          <h3 class="font-bold mb-1">Инвестиции в недвижимость</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Off-plan проекты с гарантированной доходностью 8–15% годовых. Порог от $50K.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от $50 000</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">8–15% год.</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🚀</div>
+          <h3 class="font-bold mb-1">Стартапы & Проекты</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Доступ к проверенному deal flow от WeAre Capital. Совместные инвестиции в портфельные компании.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от $25 000</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Венчур</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🤝</div>
+          <h3 class="font-bold mb-1">Со-инвестирование в людей</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Уникальный формат: инвестируйте в амбициозных предпринимателей сообщества WeAre.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">Индивидуально</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Нетворк</span></div>
+        </div>
+      </div>
+
+      <!-- AGENCY -->
+      <div id="tab-agency" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🎬</div>
+          <h3 class="font-bold mb-1">Кино & Видеопроизводство</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Снимаем корпоративные фильмы, рекламные ролики, документалистику. Студия 200К кв.м.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 5 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Студия</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📸</div>
+          <h3 class="font-bold mb-1">Фотосъёмка & Обучение</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Коммерческая и личная съёмка, курсы по фото и видео от профессиональных авторов.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 1 500 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Контент</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📣</div>
+          <h3 class="font-bold mb-1">Реклама & SMM</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Запуск рекламных кампаний, ведение соцсетей, продвижение брендов в ОАЭ и СНГ.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 000 AED/мес.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Агентство</span></div>
+        </div>
+      </div>
+
+      <!-- BEAUTY -->
+      <div id="tab-beauty" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">💆</div>
+          <h3 class="font-bold mb-1">VIP СПА & Массаж</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Топовые спа-центры Дубая, выездные мастера. Полное расслабление без очередей.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 400 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">VIP</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">💅</div>
+          <h3 class="font-bold mb-1">Бьюти-процедуры</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Волосы, кожа, ногти, перманентный макияж. Лучшие мастера с выездом или в студии.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 200 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">На дом</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🧖</div>
+          <h3 class="font-bold mb-1">Эстетическая медицина</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Ботокс, филлеры, лазерные процедуры, уход за кожей. Сертифицированные клиники.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 800 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Медицина</span></div>
+        </div>
+      </div>
+
+      <!-- REPAIR -->
+      <div id="tab-repair" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🔨</div>
+          <h3 class="font-bold mb-1">Ремонт & Отделка</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Косметический и капитальный ремонт квартир, вилл, офисов. Под ключ с дизайном.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 50 AED/кв.м.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Под ключ</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🛋️</div>
+          <h3 class="font-bold mb-1">Интерьерный дизайн</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Разработка дизайн-проекта, подбор мебели и материалов, авторский надзор.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Дизайн</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🧹</div>
+          <h3 class="font-bold mb-1">Клининг & Обслуживание</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Регулярный клининг, уборка после ремонта, обслуживание бассейна и территории.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 300 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Регулярно</span></div>
+        </div>
+      </div>
+
+      <!-- STAFF -->
+      <div id="tab-staff" class="cat-panel grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">👨‍💼</div>
+          <h3 class="font-bold mb-1">Подбор персонала</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Найм топ-менеджеров, специалистов, офисного и обслуживающего персонала в ОАЭ.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 2 000 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Рекрутинг</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">🏠</div>
+          <h3 class="font-bold mb-1">Домашний персонал</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Няни, повара, горничные, дворецкие. Проверенные кандидаты с рекомендациями.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 3 000 AED/мес.</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Домашний</span></div>
+        </div>
+        <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover">
+          <div class="text-3xl mb-3">📝</div>
+          <h3 class="font-bold mb-1">Рабочие визы & Оформление</h3>
+          <p class="text-white/45 text-sm font-light mb-4">Полное оформление рабочих виз для нанятых сотрудников, Emirates ID, трудовые контракты.</p>
+          <div class="flex justify-between items-center text-xs"><span class="text-gold font-bold">от 1 500 AED</span><span class="bg-gold/10 text-gold px-2 py-0.5 rounded">Визы</span></div>
+        </div>
+      </div>
+
+    </div><!-- /cat-content -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CLOSED COMMUNITY
+══════════════════════════════════════════ -->
+<section id="community" class="relative py-28 border-t border-white/5 overflow-hidden">
+  <div class="blob w-[500px] h-[500px] bg-gold/5 top-0 right-[-200px]"></div>
+  <div class="max-w-5xl mx-auto px-5 relative z-10 text-center">
+
+    <div class="divider"></div>
+    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+      Закрытый <span class="text-gold-grad">VIP-Чат</span>
+    </h2>
+    <p class="text-white/45 mt-4 max-w-xl mx-auto font-light mb-14">Эксклюзивное сообщество. Только проверенные участники. Реальные возможности внутри.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12 text-left">
+      <div class="glass rounded-2xl p-7 border border-gold/15 gold-glow gold-glow-hover">
+        <div class="text-3xl mb-4">💬</div>
+        <h3 class="font-bold mb-2">Закрытый Telegram</h3>
+        <p class="text-white/45 text-sm font-light leading-relaxed">Единый чат с предпринимателями, инвесторами и жителями Дубая. Проверенные контакты, реальные рекомендации.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 border border-gold/15 gold-glow gold-glow-hover">
+        <div class="text-3xl mb-4">💼</div>
+        <h3 class="font-bold mb-2">Вакансии & Работа</h3>
+        <p class="text-white/45 text-sm font-light leading-relaxed">Закрытая доска вакансий. Работодатели публикуют эксклюзивные предложения только для участников сообщества.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 border border-gold/15 gold-glow gold-glow-hover">
+        <div class="text-3xl mb-4">🪪</div>
+        <h3 class="font-bold mb-2">Рабочие визы внутри чата</h3>
+        <p class="text-white/45 text-sm font-light leading-relaxed">Оформление рабочих виз прямо через чат — наш юр. отдел берёт на себя весь процесс без лишних визитов.</p>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="grid sm:grid-cols-3 gap-5 mb-10">
+      <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover text-left">
+        <div class="text-xs text-white/40 uppercase tracking-widest mb-3">Standard</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">199 <span class="text-sm font-normal text-white/40">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-1.5 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Доступ в чат</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Доска вакансий</li>
+          <li class="flex gap-2 opacity-40"><span>✗</span> Бизнес-нетворкинг</li>
+        </ul>
+      </div>
+      <div class="relative rounded-xl p-6 border border-gold/50 bg-gradient-to-b from-gold/8 to-transparent gold-glow text-left">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full whitespace-nowrap">Лучший выбор</div>
+        <div class="text-xs text-gold/70 uppercase tracking-widest mb-3">VIP</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">499 <span class="text-sm font-normal text-white/40">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-1.5 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Всё из Standard</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Помощь с визой</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Личный менеджер</li>
+        </ul>
+      </div>
+      <div class="glass rounded-xl p-6 border border-white/5 gold-glow-hover text-left">
+        <div class="text-xs text-white/40 uppercase tracking-widest mb-3">Business</div>
+        <div class="text-3xl font-black text-gold-grad mb-1">999 <span class="text-sm font-normal text-white/40">AED/мес.</span></div>
+        <ul class="text-sm text-white/50 space-y-1.5 mt-4 font-light">
+          <li class="flex gap-2"><span class="text-gold">✓</span> Всё из VIP</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Deal-flow доступ</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Advisory board</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="https://t.me/wearecommunity" class="inline-flex items-center gap-3 px-10 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest rounded hover:bg-gold-light transition-all">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Подать заявку в сообщество
+    </a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FACES / PARTNERS
+══════════════════════════════════════════ -->
+<section id="faces" class="relative py-28 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-5">
+
+    <div class="text-center mb-16">
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Лица <span class="text-gold-grad">Проекта</span>
+      </h2>
+      <p class="text-white/45 mt-4 max-w-xl mx-auto font-light">С нами работают люди, которые задают тон в Дубае.</p>
+    </div>
+
+    <!-- People -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+      <div class="glass rounded-2xl p-7 border border-white/5 gold-glow-hover text-center">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold/30 to-gold/5 border-2 border-gold/40 flex items-center justify-center text-2xl font-black text-gold mx-auto mb-4">АК</div>
+        <div class="font-bold">Алексей Кравцов</div>
+        <div class="text-gold text-xs uppercase tracking-widest mt-1 mb-3">CEO & Founder</div>
+        <p class="text-white/40 text-xs font-light leading-relaxed">Серийный предприниматель, 15 лет в ОАЭ. Основал 4 успешных бизнеса в регионе MENA.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 border border-white/5 gold-glow-hover text-center">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold/30 to-gold/5 border-2 border-gold/40 flex items-center justify-center text-2xl font-black text-gold mx-auto mb-4">МС</div>
+        <div class="font-bold">Мария Соколова</div>
+        <div class="text-gold text-xs uppercase tracking-widest mt-1 mb-3">COO & Co-Founder</div>
+        <p class="text-white/40 text-xs font-light leading-relaxed">Операционный эксперт, запустила 3 медиапроекта с аудиторией 2M+ в Дубае.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 border border-white/5 gold-glow-hover text-center">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold/30 to-gold/5 border-2 border-gold/40 flex items-center justify-center text-2xl font-black text-gold mx-auto mb-4">ДВ</div>
+        <div class="font-bold">Дмитрий Волков</div>
+        <div class="text-gold text-xs uppercase tracking-widest mt-1 mb-3">Head of Investments</div>
+        <p class="text-white/40 text-xs font-light leading-relaxed">Венчурный инвестор, портфель $80M. Эксперт по рынку недвижимости ОАЭ.</p>
+      </div>
+      <div class="glass rounded-2xl p-7 border border-white/5 gold-glow-hover text-center">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gold/30 to-gold/5 border-2 border-gold/40 flex items-center justify-center text-2xl font-black text-gold mx-auto mb-4">НА</div>
+        <div class="font-bold">Наталья Азарова</div>
+        <div class="text-gold text-xs uppercase tracking-widest mt-1 mb-3">Chief Media Officer</div>
+        <p class="text-white/40 text-xs font-light leading-relaxed">Медиапродюсер, режиссёр, создатель контент-студии WeAre в Дубае.</p>
+      </div>
+    </div>
+
+    <!-- Partner logos -->
+    <div class="text-center mb-8">
+      <div class="text-xs text-white/30 uppercase tracking-[3px] mb-8">Партнёры & Экосистема</div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">DIFC Courts</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">Emirates NBD</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">Mashreq Bank</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">Al Tamimi & Co.</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">CBRE UAE</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">Dubai Chamber</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">PwC Middle East</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">Binance MENA</div>
+      <div class="glass px-6 py-3 rounded-lg border border-white/5 text-sm font-semibold text-white/40 hover:border-gold/30 hover:text-gold transition-all cursor-default">ADGM</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FINANCIAL BLOCK
+══════════════════════════════════════════ -->
+<section id="finance" class="relative py-28 border-t border-white/5 overflow-hidden">
+  <div class="blob w-[400px] h-[400px] bg-gold/5 bottom-0 right-[-100px]"></div>
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+
+    <div class="text-center mb-16">
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Внутренняя <span class="text-gold-grad">Финансовая</span> Система
+      </h2>
+      <p class="text-white/45 mt-4 max-w-2xl mx-auto font-light">Собственная платёжная экосистема WeAre: рассрочка, карты, обмен — всё внутри одного сервиса.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Internal payments -->
+      <div class="glass rounded-2xl p-8 border border-gold/15 gold-glow">
+        <h3 class="text-xl font-bold mb-2 flex items-center gap-3">
+          <span class="text-gold">💳</span> Внутренняя оплата WeAre
+        </h3>
+        <p class="text-white/45 text-sm font-light mb-6 leading-relaxed">Все услуги экосистемы оплачиваются через единый счёт WeAre. Кошелёк пополняется один раз — тратится на любые сервисы.</p>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Единый кошелёк для всех категорий услуг</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Мгновенная оплата через WeAre App (Apple Pay, Google Pay)</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Кэшбэк до 5% на все транзакции внутри экосистемы</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Мультивалютность: AED, USD, EUR, USDT</span></li>
+        </ul>
+      </div>
+
+      <!-- Installments -->
+      <div class="glass rounded-2xl p-8 border border-gold/15 gold-glow">
+        <h3 class="text-xl font-bold mb-2 flex items-center gap-3">
+          <span class="text-gold">📅</span> Внутренняя Рассрочка WeAre
+        </h3>
+        <p class="text-white/45 text-sm font-light mb-6 leading-relaxed">Разбивай любой заказ или покупку на части — без банков, без переплат, без лишних документов.</p>
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="text-center p-3 rounded-lg bg-white/3 border border-white/5">
+            <div class="text-lg font-black text-gold-grad">3</div>
+            <div class="text-[11px] text-white/40 uppercase tracking-wider">месяца</div>
+            <div class="text-xs text-white/50 mt-1">0% комиссия</div>
+          </div>
+          <div class="text-center p-3 rounded-lg border border-gold/25 bg-gold/5">
+            <div class="text-lg font-black text-gold-grad">6</div>
+            <div class="text-[11px] text-white/40 uppercase tracking-wider">месяцев</div>
+            <div class="text-xs text-white/50 mt-1">2% в месяц</div>
+          </div>
+          <div class="text-center p-3 rounded-lg bg-white/3 border border-white/5">
+            <div class="text-lg font-black text-gold-grad">12</div>
+            <div class="text-[11px] text-white/40 uppercase tracking-wider">месяцев</div>
+            <div class="text-xs text-white/50 mt-1">1.5% в месяц</div>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Доступна для авто, недвижимости, ивентов и яхт</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold mt-0.5">▸</span><span class="text-white/60 font-light">Одобрение за 24 часа без банковских справок</span></li>
+        </ul>
+      </div>
+
+      <!-- WeAre Card -->
+      <div class="md:col-span-2 rounded-2xl p-8 border border-gold/30 bg-gradient-to-r from-gold/8 via-transparent to-gold/5 gold-glow">
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+          <!-- Card mock -->
+          <div class="flex-shrink-0 w-64 h-40 rounded-2xl bg-gradient-to-br from-[#1a1410] to-[#0d0d0d] border border-gold/40 p-6 flex flex-col justify-between gold-glow relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent pointer-events-none"></div>
+            <div class="font-black text-gold text-lg tracking-widest">We<span class="text-white">Are</span></div>
+            <div>
+              <div class="text-white/20 text-xs font-mono tracking-widest mb-1">•••• •••• •••• 7820</div>
+              <div class="flex justify-between items-end">
+                <div class="text-white/40 text-[10px] uppercase tracking-wider">VIP Member</div>
+                <div class="text-gold text-xs font-bold">DUBAI</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-gold uppercase tracking-widest mb-2">Дизайнерская карта WeAre</div>
+            <h3 class="text-2xl font-bold mb-3">Ваша карта — ваш статус</h3>
+            <p class="text-white/45 text-sm font-light leading-relaxed mb-4">Лимитированный выпуск металлических и виртуальных карт в дизайне WeAre. Мгновенная онлайн-установка на iPhone/Android. Работает в 180 странах.</p>
+            <div class="flex flex-wrap gap-3">
+              <span class="glass px-3 py-1.5 rounded text-xs text-gold/70 border border-gold/15">Apple Pay</span>
+              <span class="glass px-3 py-1.5 rounded text-xs text-gold/70 border border-gold/15">Google Pay</span>
+              <span class="glass px-3 py-1.5 rounded text-xs text-gold/70 border border-gold/15">Мультивалюта</span>
+              <span class="glass px-3 py-1.5 rounded text-xs text-gold/70 border border-gold/15">Cashback 5%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SCALE & CAPITALIZATION
+══════════════════════════════════════════ -->
+<section id="scale" class="relative py-28 border-t border-white/5 overflow-hidden">
+  <div class="blob w-[600px] h-[600px] bg-gold/4 top-[-100px] left-[-200px]"></div>
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+
+    <div class="text-center mb-16">
+      <div class="inline-block px-3 py-1 rounded border border-gold/25 text-gold/70 text-[10px] uppercase tracking-[3px] mb-4">Для соучредителей & Крупных инвесторов</div>
+      <div class="divider"></div>
+      <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">
+        Масштаб &<br/><span class="text-gold-grad">Капитализация</span>
+      </h2>
+      <p class="text-white/45 mt-4 max-w-2xl mx-auto font-light">Мы строим не просто сервис — мы консолидируем активы и создаём инфраструктуру нового уровня.</p>
+    </div>
+
+    <!-- Media Studio -->
+    <div class="grid md:grid-cols-2 gap-8 mb-8">
+      <div class="glass rounded-2xl p-8 border border-gold/15 gold-glow gold-glow-hover">
+        <div class="text-4xl mb-4">🎬</div>
+        <div class="text-xs text-gold uppercase tracking-widest mb-2">Флагманский проект</div>
+        <h3 class="text-2xl font-bold mb-4">Медиастудия WeAre Dubai</h3>
+        <p class="text-white/45 text-sm font-light leading-relaxed mb-6">Открытие масштабного медиапространства в Дубае — <strong class="text-white">200 000 кв. метров</strong> под студии, коворкинг, продакшн и ивент-площадки. Якорная точка экосистемы WeAre.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/3 rounded-xl p-4 text-center">
+            <div class="text-2xl font-black text-gold-grad">200K</div>
+            <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">кв. метров</div>
+          </div>
+          <div class="bg-white/3 rounded-xl p-4 text-center">
+            <div class="text-2xl font-black text-gold-grad">400</div>
+            <div class="text-[11px] text-white/40 uppercase tracking-wider mt-1">AED/час аренда</div>
+          </div>
+        </div>
+        <ul class="mt-6 space-y-2 text-sm">
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Профессиональные съёмочные павильоны</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Студии звукозаписи и подкастинга</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Ивент-залы вместимостью до 2 000 чел.</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Коворкинг для участников сообщества</span></li>
+        </ul>
+      </div>
+
+      <!-- Asset consolidation -->
+      <div class="glass rounded-2xl p-8 border border-gold/15 gold-glow gold-glow-hover">
+        <div class="text-4xl mb-4">🏛️</div>
+        <div class="text-xs text-gold uppercase tracking-widest mb-2">Стратегический инструмент</div>
+        <h3 class="text-2xl font-bold mb-4">Консолидация Активов</h3>
+        <p class="text-white/45 text-sm font-light leading-relaxed mb-6">Объединение залогового имущества всех партнёров и соучредителей в общем банковском пуле — для получения доступа к крупному объёму дешёвого финансирования через банки ОАЭ.</p>
+
+        <div class="rounded-xl border border-gold/20 bg-gold/5 p-5 mb-6">
+          <div class="text-sm font-semibold text-gold mb-1">Как это работает:</div>
+          <p class="text-white/45 text-xs font-light leading-relaxed">Консолидированный залоговый пул позволяет получить кредитную линию под 3–5% годовых в AED против рыночных 12–18% — это прямое конкурентное преимущество для масштабирования.</p>
+        </div>
+
+        <ul class="space-y-2 text-sm">
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Недвижимость, флот, бизнес-активы как залог</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Партнёрство с топ-5 банками ОАЭ</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Доступ к линиям финансирования $10M–$100M</span></li>
+          <li class="flex gap-3 items-start"><span class="text-gold">▸</span><span class="text-white/55 font-light">Прозрачное распределение через DIFC SPV</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Co-founder CTA -->
+    <div class="rounded-2xl border border-gold/40 bg-gradient-to-r from-gold/8 via-gold/3 to-transparent p-10 text-center gold-glow">
+      <div class="text-xs text-gold uppercase tracking-[3px] mb-4">Ограниченное число мест</div>
+      <h3 class="text-3xl font-black uppercase mb-4">Стать Соучредителем WeAre</h3>
+      <p class="text-white/45 max-w-xl mx-auto font-light mb-8 leading-relaxed">Мы ищем стратегических партнёров для совместного владения вертикалями холдинга. Порог входа, условия и детали — на закрытой встрече.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="weare.html" class="px-8 py-4 bg-gold text-black font-bold text-sm uppercase tracking-widest rounded hover:bg-gold-light transition-all">
+          Узнать об инвестициях →
+        </a>
+        <a href="#contact" class="px-8 py-4 border border-gold/40 text-gold font-bold text-sm uppercase tracking-widest rounded hover:bg-gold/10 transition-all">
+          Запросить презентацию
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════ -->
+<section id="contact" class="relative py-28 border-t border-white/5">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <div class="divider"></div>
+    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
+      Готовы начать?
+    </h2>
+    <p class="text-white/45 font-light mb-12 max-w-xl mx-auto">Консьерж ответит в течение 15 минут. Любой запрос — любой бюджет.</p>
+
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <a href="https://t.me/dubaivipconcierge" class="inline-flex items-center gap-3 px-7 py-4 rounded-lg bg-[#229ED9] text-white font-bold text-sm uppercase tracking-wider hover:opacity-85 transition-all">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+        Telegram
+      </a>
+      <a href="https://wa.me/971500000000" class="inline-flex items-center gap-3 px-7 py-4 rounded-lg bg-[#25D366] text-white font-bold text-sm uppercase tracking-wider hover:opacity-85 transition-all">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.524 5.84L0 24l6.302-1.653A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.159 16.693c-.261.733-1.516 1.401-2.073 1.449-.557.049-1.08.247-3.633-.756-3.072-1.22-5.042-4.356-5.193-4.556-.152-.2-1.237-1.644-1.237-3.136s.781-2.226 1.058-2.528c.277-.302.604-.378.804-.378l.578.01c.185.008.433-.07.678.518.261.619.886 2.138.963 2.293.077.155.129.338.026.544-.103.206-.155.334-.309.514-.154.18-.324.402-.462.54-.155.153-.316.319-.136.626.18.307.8 1.32 1.717 2.14 1.178 1.048 2.17 1.372 2.476 1.527.307.155.485.129.663-.077.18-.206.765-.894 1-.2.206-.307.235-.359.471-.26.462.052 1.313.617 1.507.771.193.155.32.18.371.283.05.1.05.59-.211 1.157z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:hello@weare.ae" class="inline-flex items-center gap-3 px-7 py-4 rounded-lg border border-gold/40 text-gold font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition-all">
+        ✉ hello@weare.ae
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="border-t border-white/5 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <div class="text-xl font-black tracking-widest uppercase mb-3">We<span class="text-gold-grad">Are</span></div>
+        <p class="text-white/35 text-sm font-light leading-relaxed mb-4">Премиум VIP-консьерж суперапп. Дубай, ОАЭ. 24/7.</p>
+        <a href="weare.html" class="inline-block text-xs text-gold border border-gold/30 px-4 py-2 rounded hover:bg-gold/10 transition-all uppercase tracking-wider">Инвестировать →</a>
+      </div>
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-[2px] text-white/40 mb-4">Услуги</div>
+        <ul class="space-y-2.5 text-sm text-white/40 font-light">
+          <li><a href="#catalog" class="hover:text-gold transition-colors">Авто & Флот</a></li>
+          <li><a href="#catalog" class="hover:text-gold transition-colors">Яхты</a></li>
+          <li><a href="#catalog" class="hover:text-gold transition-colors">Недвижимость</a></li>
+          <li><a href="#catalog" class="hover:text-gold transition-colors">Инвестиции</a></li>
+          <li><a href="#catalog" class="hover:text-gold transition-colors">Бизнес-консалтинг</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-[2px] text-white/40 mb-4">Экосистема</div>
+        <ul class="space-y-2.5 text-sm text-white/40 font-light">
+          <li><a href="#radio" class="hover:text-gold transition-colors">Radio Dubai</a></li>
+          <li><a href="#community" class="hover:text-gold transition-colors">VIP-Чат</a></li>
+          <li><a href="#referral" class="hover:text-gold transition-colors">Реферальная программа</a></li>
+          <li><a href="#finance" class="hover:text-gold transition-colors">WeAre Карты</a></li>
+          <li><a href="weare.html" class="hover:text-gold transition-colors">WeAre Holding</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-[2px] text-white/40 mb-4">Контакты</div>
+        <ul class="space-y-2.5 text-sm text-white/40 font-light">
+          <li><a href="https://t.me/dubaivipconcierge" class="hover:text-gold transition-colors">Telegram</a></li>
+          <li><a href="https://wa.me/971500000000" class="hover:text-gold transition-colors">WhatsApp</a></li>
+          <li><a href="mailto:hello@weare.ae" class="hover:text-gold transition-colors">hello@weare.ae</a></li>
+          <li class="text-white/25 text-xs mt-2">DIFC, Dubai, UAE 🇦🇪</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/25">
+      <span>© 2024 WeAre Dubai. Все права защищены.</span>
+      <span>Dubai International Financial Centre · United Arab Emirates</span>
+    </div>
+  </div>
 </footer>
+
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+  // Inject radio style chips
+  const styles = ['Afro House','Deep House','Indie Dance','Melodic Techno','Melodic House','Tech House','Minimal'];
+  const container = document.querySelector('.grid.grid-cols-2.sm\\:grid-cols-3.lg\\:grid-cols-7');
+  if (container) {
+    styles.forEach((s, i) => {
+      const el = document.createElement('button');
+      el.className = 'px-3 py-2.5 rounded-lg border text-[11px] font-semibold uppercase tracking-wider transition-all ' +
+        (i === 4 ? 'border-gold/50 bg-gold/10 text-gold' : 'border-white/8 text-white/40 hover:border-gold/30 hover:text-gold');
+      el.textContent = s;
+      el.onclick = () => {
+        container.querySelectorAll('button').forEach(b => b.className = b.className.replace('border-gold/50 bg-gold/10 text-gold','border-white/8 text-white/40 hover:border-gold/30 hover:text-gold'));
+        el.className = el.className.replace('border-white/8 text-white/40 hover:border-gold/30 hover:text-gold','border-gold/50 bg-gold/10 text-gold');
+      };
+      container.appendChild(el);
+    });
+  }
+
+  // Catalog tabs
+  function switchTab(id) {
+    document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const panel = document.getElementById('tab-' + id);
+    const btn   = document.querySelector('[data-tab="' + id + '"]');
+    if (panel) panel.classList.add('active');
+    if (btn)   btn.classList.add('active');
+  }
+
+  // Sticky header shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').style.boxShadow =
+      window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
+  });
+</script>
 
 </body>
 </html>
