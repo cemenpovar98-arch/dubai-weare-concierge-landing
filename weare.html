@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeAre — Международная Премиум Экосистема & Инвестиционно-Медийный Холдинг</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'RF Dewi Expanded';
+            src: url('RF-Dewi-Expanded-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #f3e5ab;
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #222222;
+            --font-premium: 'RF Dewi Expanded', 'Montserrat', sans-serif;
+            --font-base: 'Montserrat', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-base);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── Header ── */
+        header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background-color: rgba(13,13,13,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-family: var(--font-premium);
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo span { color: var(--accent-gold); }
+
+        nav { display: flex; gap: 25px; align-items: center; }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--accent-gold); }
+
+        .btn-header {
+            padding: 10px 22px;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            background: transparent;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .btn-header:hover { background-color: var(--accent-gold); color: #000; }
+
+        /* ── Hero ── */
+        .hero {
+            padding-top: 200px;
+            padding-bottom: 130px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, rgba(13,13,13,0) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            border: 1px solid rgba(212,175,55,0.35);
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .hero h1 {
+            font-family: var(--font-premium);
+            font-size: 40px;
+            line-height: 1.25;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+        .hero h1 span {
+            color: var(--accent-gold);
+            display: block;
+            font-size: 50px;
+            margin-top: 12px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            font-family: var(--font-base);
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 16px 38px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .btn-primary:hover { background-color: var(--accent-gold-hover); }
+        .btn-secondary {
+            font-family: var(--font-base);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 16px 38px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .btn-secondary:hover { background-color: #fff; color: #000; }
+
+        /* ── Sections ── */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-family: var(--font-premium);
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .section-title span { color: var(--accent-gold); }
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ── Cards ── */
+        .grid-3 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 8px;
+            width: calc(33.333% - 20px);
+            min-width: 280px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+        .card-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-family: var(--font-premium);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+        .card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-weight: 300;
+        }
+        .card-tag {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        /* ── About / Numbers ── */
+        .numbers-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 70px;
+        }
+        .num-item {
+            flex: 1;
+            min-width: 180px;
+            padding: 45px 30px;
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+        .num-item:last-child { border-right: none; }
+        .num-value {
+            font-family: var(--font-premium);
+            font-size: 42px;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .num-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* ── About Text Block ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-family: var(--font-premium);
+            font-size: 26px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .about-text h2 span { color: var(--accent-gold); }
+        .about-text p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .about-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+        .about-list li {
+            font-size: 14px;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 300;
+        }
+        .about-list li::before {
+            content: '▸';
+            color: var(--accent-gold);
+            flex-shrink: 0;
+        }
+        .about-visual {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .about-visual .big-letter {
+            font-family: var(--font-premium);
+            font-size: 120px;
+            color: rgba(212,175,55,0.08);
+            line-height: 1;
+            margin-bottom: -20px;
+            user-select: none;
+        }
+        .about-visual p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .about-visual .quote-mark {
+            font-size: 60px;
+            color: var(--accent-gold);
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+
+        /* ── Ecosystem / Verticals ── */
+        .verticals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 22px;
+        }
+        .vertical-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 32px 26px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .vertical-card:hover { border-color: var(--accent-gold); transform: translateY(-4px); }
+        .v-num {
+            font-family: var(--font-premium);
+            font-size: 11px;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .vertical-card h3 {
+            font-family: var(--font-premium);
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .vertical-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        /* ── Investment ── */
+        .invest-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .invest-info h2 {
+            font-family: var(--font-premium);
+            font-size: 26px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        .invest-info h2 span { color: var(--accent-gold); }
+        .invest-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .invest-tiers { display: flex; flex-direction: column; gap: 14px; }
+        .tier {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+        .tier:hover { border-color: var(--accent-gold); }
+        .tier-name { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tier-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .tier-amount {
+            font-family: var(--font-premium);
+            color: var(--accent-gold);
+            font-size: 18px;
+            white-space: nowrap;
+        }
+        .invest-perks {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .perk-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px;
+        }
+        .perk-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .perk-item p { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+
+        /* ── Media ── */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .media-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .media-card:hover { border-color: var(--accent-gold); transform: translateY(-4px); }
+        .media-thumb {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a1a, #111);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .media-body { padding: 24px; }
+        .media-category {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+        .media-body h3 { font-size: 15px; margin-bottom: 10px; font-family: var(--font-premium); }
+        .media-body p { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+
+        /* ── Team ── */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 36px 28px;
+            text-align: center;
+            width: calc(25% - 18px);
+            min-width: 210px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .team-card:hover { border-color: var(--accent-gold); transform: translateY(-4px); }
+        .team-avatar {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(212,175,55,0.05));
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-premium);
+            font-size: 22px;
+            color: var(--accent-gold);
+            margin: 0 auto 18px;
+        }
+        .team-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .team-card .role {
+            font-size: 11px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .team-card p { font-size: 12px; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+
+        /* ── Partners ── */
+        .partners-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        .partner-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 18px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .partner-chip:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+        /* ── CTA Final ── */
+        .cta-final {
+            padding: 120px 0;
+            text-align: center;
+            border-bottom: none;
+            background: linear-gradient(0deg, rgba(212,175,55,0.04) 0%, transparent 100%);
+        }
+        .cta-final h2 {
+            font-family: var(--font-premium);
+            font-size: 34px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -0.3px;
+        }
+        .cta-final h2 span { color: var(--accent-gold); }
+        .cta-final p {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto 45px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .contact-chips {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .contact-chip:hover { opacity: 0.85; transform: translateY(-2px); }
+        .chip-tg  { background: #229ED9; color: #fff; }
+        .chip-wa  { background: #25D366; color: #fff; }
+        .chip-em  { background: transparent; border: 1px solid var(--accent-gold); color: var(--accent-gold); }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0 35px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        .footer-brand .logo { font-size: 18px; display: block; margin-bottom: 14px; }
+        .footer-brand p { font-size: 13px; color: var(--text-muted); font-weight: 300; line-height: 1.8; }
+        .footer-col h4 {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+        .footer-col ul li a:hover { color: var(--accent-gold); }
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-bottom a { color: var(--text-muted); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--accent-gold); }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .about-grid, .invest-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            nav { display: none; }
+            .hero h1 { font-size: 30px; }
+            .hero h1 span { font-size: 36px; }
+            .team-card { width: calc(50% - 12px); }
+        }
+        @media (max-width: 600px) {
+            .hero { padding-top: 130px; padding-bottom: 80px; }
+            .hero h1 { font-size: 24px; }
+            .hero h1 span { font-size: 28px; }
+            section { padding: 70px 0; }
+            .card { width: 100%; }
+            .num-item { min-width: 140px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .team-card { width: 100%; }
+            .cta-final h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<header>
+    <div class="container">
+        <div class="header-container">
+            <a href="#" class="logo">We<span>Are</span></a>
+            <nav>
+                <a href="#about">О нас</a>
+                <a href="#ecosystem">Экосистема</a>
+                <a href="#invest">Инвестиции</a>
+                <a href="#media">Медиа</a>
+                <a href="#team">Команда</a>
+            </nav>
+            <a href="#contact" class="btn-header">Связаться</a>
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-eyebrow">Международная Премиум Экосистема</div>
+        <h1>
+            Инвестиции. Медиа. Сообщество.
+            <span>WeAre Holding</span>
+        </h1>
+        <p>Мы строим вертикально интегрированный холдинг нового поколения — объединяя капитал, контент и глобальное сообщество предпринимателей в одну экосистему с центром в Дубае.</p>
+        <div class="cta-group">
+            <a href="#invest" class="btn-primary">Инвестировать</a>
+            <a href="#ecosystem" class="btn-secondary">Узнать больше</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ NUMBERS ═══════════════════════════ -->
+<section id="about" style="padding: 0; border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="padding-top: 80px; padding-bottom: 80px;">
+        <div class="numbers-row">
+            <div class="num-item">
+                <div class="num-value">$12M+</div>
+                <div class="num-label">Под управлением</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">7</div>
+                <div class="num-label">Вертикалей бизнеса</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">18</div>
+                <div class="num-label">Стран присутствия</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">5 000+</div>
+                <div class="num-label">Участников экосистемы</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">2019</div>
+                <div class="num-label">Год основания</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section>
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Кто такие<br><span>WeAre?</span></h2>
+                <p>WeAre — это инвестиционно-медийный холдинг, объединяющий сильных предпринимателей, инвесторов и профессионалов со всего мира вокруг единой стратегии роста.</p>
+                <p>Мы не просто фонд и не просто медиа. Мы — экосистема, где капитал встречается с контентом, а нетворкинг трансформируется в реальные сделки и партнёрства.</p>
+                <ul class="about-list">
+                    <li>Штаб-квартира в DIFC, Дубай</li>
+                    <li>Офисы в Москве, Лондоне и Лимасоле</li>
+                    <li>Портфель из 14 активных проектов</li>
+                    <li>Стратегический фокус на MENA и СНГ</li>
+                    <li>Лицензированный инвестиционный советник ОАЭ</li>
+                </ul>
+            </div>
+            <div class="about-visual">
+                <div class="big-letter">WA</div>
+                <div class="quote-mark">"</div>
+                <p>Мы верим, что настоящий рост происходит на пересечении сильных людей, правильного капитала и мощного нарратива. WeAre — это именно такое пересечение.</p>
+                <br>
+                <p style="color: var(--accent-gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">— Основатели WeAre</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ ECOSYSTEM ═══════════════════════════ -->
+<section id="ecosystem">
+    <div class="container">
+        <h2 class="section-title">Наша <span>Экосистема</span></h2>
+        <p class="section-subtitle">Семь взаимосвязанных вертикалей, которые создают синергию и устойчивый рост для всех участников холдинга.</p>
+        <div class="verticals-grid">
+            <div class="vertical-card">
+                <div class="v-num">01 / Вертикаль</div>
+                <h3>WeAre Capital</h3>
+                <p>Инвестиционный фонд прямых инвестиций. Фокус на технологии, недвижимость ОАЭ и масштабирование бизнесов из СНГ на международные рынки.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">02 / Вертикаль</div>
+                <h3>WeAre Media</h3>
+                <p>Мультиплатформенная медиакомпания: подкасты, YouTube, Telegram-каналы с совокупной аудиторией 1,2M+. Бизнес-контент нового поколения.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">03 / Вертикаль</div>
+                <h3>WeAre Community</h3>
+                <p>Закрытое сообщество предпринимателей и инвесторов: нетворкинг-ивенты, мастермайнды, эксклюзивный клуб в Дубае.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">04 / Вертикаль</div>
+                <h3>WeAre Concierge</h3>
+                <p>Премиальный консьерж-сервис для резидентов ОАЭ: от недвижимости и виз до частных джетов и VIP-доступа к лучшим сервисам страны.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">05 / Вертикаль</div>
+                <h3>WeAre Education</h3>
+                <p>Образовательная платформа: курсы по инвестициям, бизнесу в ОАЭ, финансовой грамотности. Онлайн и офлайн форматы.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">06 / Вертикаль</div>
+                <h3>WeAre Tech</h3>
+                <p>Собственные и портфельные IT-продукты: SaaS, fintech-решения, автоматизация для малого и среднего бизнеса.</p>
+            </div>
+            <div class="vertical-card">
+                <div class="v-num">07 / Вертикаль</div>
+                <h3>WeAre Real Estate</h3>
+                <p>Инвестиции в недвижимость Дубая, Абу-Даби и Рас-эль-Хаймы. Агентство, управление активами, off-plan проекты.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ WHY US ═══════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="section-title">Почему <span>WeAre?</span></h2>
+        <p class="section-subtitle">Три ключевых преимущества, которые отличают нас от классических фондов и медиакомпаний.</p>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h3>Синергия вертикалей</h3>
+                <p>Каждая вертикаль усиливает остальные. Медиа привлекают инвесторов в фонд, сообщество генерирует сделки для капитала, консьерж удерживает клиентов экосистемы.</p>
+                <span class="card-tag">Конкурентный ров</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Глобальное присутствие</h3>
+                <p>Юрисдикция ОАЭ с доступом к рынкам MENA, Европы и СНГ. Мы работаем там, где сосредоточен капитал и где самые привлекательные условия для бизнеса.</p>
+                <span class="card-tag">18 стран</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>Сообщество как актив</h3>
+                <p>5 000+ активных предпринимателей — это не просто аудитория. Это живая сеть, генерирующая сделки, партнёрства и поток качественных инвестиционных возможностей.</p>
+                <span class="card-tag">Network effect</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ INVEST ═══════════════════════════ -->
+<section id="invest">
+    <div class="container">
+        <h2 class="section-title">Инвестиционные <span>Возможности</span></h2>
+        <p class="section-subtitle">Несколько форматов участия — от прямых инвестиций в фонд до партнёрства в отдельных вертикалях.</p>
+        <div class="invest-row">
+            <div class="invest-info">
+                <h2>Войдите в экосистему<br><span>WeAre Capital</span></h2>
+                <p>Мы открываем ограниченный раунд для стратегических инвесторов. Минимальный порог — от $50 000. Приоритетные отрасли: proptech, fintech, B2B SaaS, медиа и образование.</p>
+                <p style="font-size:13px; color: var(--text-muted); border-left: 2px solid var(--accent-gold); padding-left: 14px; font-weight: 300;">Прогнозируемая доходность портфеля: <strong style="color:#fff;">18–30% годовых</strong> в USD на горизонте 3–5 лет.</p>
+                <br>
+                <div class="invest-tiers">
+                    <div class="tier">
+                        <div>
+                            <div class="tier-name">Silver Partner</div>
+                            <div class="tier-sub">Базовый доступ к фонду</div>
+                        </div>
+                        <div class="tier-amount">от $50K</div>
+                    </div>
+                    <div class="tier">
+                        <div>
+                            <div class="tier-name">Gold Partner</div>
+                            <div class="tier-sub">Приоритетный deal-flow</div>
+                        </div>
+                        <div class="tier-amount">от $150K</div>
+                    </div>
+                    <div class="tier">
+                        <div>
+                            <div class="tier-name">Platinum Partner</div>
+                            <div class="tier-sub">Место в advisory board</div>
+                        </div>
+                        <div class="tier-amount">от $500K</div>
+                    </div>
+                </div>
+            </div>
+            <div class="invest-perks">
+                <div class="perk-item">
+                    <h4>📊 Прозрачная отчётность</h4>
+                    <p>Ежеквартальные отчёты, личный кабинет инвестора, доступ к документации по каждой сделке. Полная прозрачность на всех уровнях.</p>
+                </div>
+                <div class="perk-item">
+                    <h4>🤝 Доступ к сделкам</h4>
+                    <p>Приоритетный доступ к pre-deal инвестиционным возможностям до открытия для широкого круга инвесторов.</p>
+                </div>
+                <div class="perk-item">
+                    <h4>🏛️ Юридическая защита</h4>
+                    <p>Все сделки структурированы через DIFC. Английское право, международный арбитраж, защита активов в юрисдикции ОАЭ.</p>
+                </div>
+                <div class="perk-item">
+                    <h4>🎯 Нетворкинг-ивенты</h4>
+                    <p>Ежегодная конференция WeAre Summit в Дубае, закрытые ужины с основателями портфельных компаний и лидерами рынка.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ MEDIA ═══════════════════════════ -->
+<section id="media">
+    <div class="container">
+        <h2 class="section-title">WeAre <span>Media</span></h2>
+        <p class="section-subtitle">Мы создаём контент о бизнесе, инвестициях и жизни в ОАЭ — честно, глубоко и с практической ценностью.</p>
+        <div class="media-grid">
+            <div class="media-card">
+                <div class="media-thumb">🎙️</div>
+                <div class="media-body">
+                    <div class="media-category">Подкаст</div>
+                    <h3>WeAre Podcast</h3>
+                    <p>Интервью с предпринимателями, инвесторами и экспертами ОАЭ. Реальные истории, цифры и инсайты без купюр.</p>
+                </div>
+            </div>
+            <div class="media-card">
+                <div class="media-thumb">📺</div>
+                <div class="media-body">
+                    <div class="media-category">YouTube</div>
+                    <h3>WeAre YouTube</h3>
+                    <p>Документальные выпуски о жизни в Дубае, обзоры бизнес-возможностей, разборы рынков и еженедельные экономические дайджесты.</p>
+                </div>
+            </div>
+            <div class="media-card">
+                <div class="media-thumb">✈️</div>
+                <div class="media-body">
+                    <div class="media-category">Telegram</div>
+                    <h3>WeAre Channel</h3>
+                    <p>Оперативные новости рынков ОАЭ, инвестиционные сигналы, анонсы сделок и эксклюзивные материалы для подписчиков.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ TEAM ═══════════════════════════ -->
+<section id="team">
+    <div class="container">
+        <h2 class="section-title">Команда <span>WeAre</span></h2>
+        <p class="section-subtitle">Профессионалы с опытом в инвестициях, медиа, технологиях и управлении международными активами.</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">АК</div>
+                <h3>Алексей Кравцов</h3>
+                <div class="role">CEO & Co-Founder</div>
+                <p>15 лет в инвестиционном банкинге. Закрыл сделки на $200M+ в регионе MENA.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">МС</div>
+                <h3>Мария Соколова</h3>
+                <div class="role">COO & Co-Founder</div>
+                <p>Операционный директор с опытом масштабирования b2b-стартапов в 12 странах.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">ДВ</div>
+                <h3>Дмитрий Волков</h3>
+                <div class="role">CIO, WeAre Capital</div>
+                <p>Управлял венчурным портфелем $80M в Европе и СНГ. Эксперт в proptech и fintech.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">НА</div>
+                <h3>Наталья Азарова</h3>
+                <div class="role">Chief Media Officer</div>
+                <p>Основала три медиапроекта с аудиторией 2M+. Стратег в digital-контенте и brand building.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ PARTNERS ═══════════════════════════ -->
+<section>
+    <div class="container">
+        <h2 class="section-title">Партнёры &amp; <span>Экосистема</span></h2>
+        <p class="section-subtitle">Мы работаем с ведущими юридическими, финансовыми и технологическими партнёрами в ОАЭ и за его пределами.</p>
+        <div class="partners-row">
+            <div class="partner-chip">DIFC Courts</div>
+            <div class="partner-chip">Emirates NBD</div>
+            <div class="partner-chip">Al Tamimi & Co.</div>
+            <div class="partner-chip">CBRE UAE</div>
+            <div class="partner-chip">Dubai Chamber</div>
+            <div class="partner-chip">Mashreq Bank</div>
+            <div class="partner-chip">PwC Middle East</div>
+            <div class="partner-chip">Abu Dhabi Global Market</div>
+            <div class="partner-chip">Binance MENA</div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ CTA FINAL ═══════════════════════════ -->
+<section class="cta-final" id="contact">
+    <div class="container">
+        <h2>Готовы стать частью<br><span>WeAre?</span></h2>
+        <p>Если вы инвестор, предприниматель или медиапрофессионал — мы хотим познакомиться. Напишите нам и давайте обсудим, как вы можете войти в экосистему.</p>
+        <div class="cta-group">
+            <a href="#" class="btn-primary">Оставить заявку</a>
+            <a href="#" class="btn-secondary">Скачать презентацию</a>
+        </div>
+        <div class="contact-chips">
+            <a href="https://t.me/weareholding" class="contact-chip chip-tg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+                Telegram
+            </a>
+            <a href="https://wa.me/971500000000" class="contact-chip chip-wa">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.112 1.524 5.84L0 24l6.302-1.653A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.159 16.693c-.261.733-1.516 1.401-2.073 1.449-.557.049-1.08.247-3.633-.756-3.072-1.22-5.042-4.356-5.193-4.556-.152-.2-1.237-1.644-1.237-3.136s.781-2.226 1.058-2.528c.277-.302.604-.378.804-.378.2 0 .402.002.578.01.185.008.433-.07.678.518.261.619.886 2.138.963 2.293.077.155.129.338.026.544-.103.206-.155.334-.309.514-.154.18-.324.402-.462.54-.155.153-.316.319-.136.626.18.307.8 1.32 1.717 2.14 1.178 1.048 2.17 1.372 2.476 1.527.307.155.485.129.663-.077.18-.206.765-.894 1-.2.206-.307.235-.359.471-.26.462.052 1.313.617 1.507.771.193.155.32.18.371.283.05.1.05.59-.211 1.157z"/></svg>
+                WhatsApp
+            </a>
+            <a href="mailto:hello@weare.ae" class="contact-chip chip-em">
+                ✉ hello@weare.ae
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">We<span>Are</span></a>
+                <p>Международный инвестиционно-медийный холдинг. Штаб-квартира в DIFC, Дубай. Объединяем капитал, контент и сообщество.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Холдинг</h4>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#ecosystem">Экосистема</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#invest">Инвестиции</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Вертикали</h4>
+                <ul>
+                    <li><a href="#ecosystem">WeAre Capital</a></li>
+                    <li><a href="#media">WeAre Media</a></li>
+                    <li><a href="#ecosystem">WeAre Concierge</a></li>
+                    <li><a href="#ecosystem">WeAre Real Estate</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="https://t.me/weareholding">Telegram</a></li>
+                    <li><a href="https://wa.me/971500000000">WhatsApp</a></li>
+                    <li><a href="mailto:hello@weare.ae">hello@weare.ae</a></li>
+                    <li><a href="#contact">Оставить заявку</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 WeAre Holding. Все права защищены.</span>
+            <span>DIFC, Dubai, United Arab Emirates 🇦🇪</span>
+            <span>
+                <a href="#">Политика конфиденциальности</a> &nbsp;·&nbsp;
+                <a href="#">Правовая информация</a>
+            </span>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
